@@ -40,7 +40,7 @@ TARGET_KERNEL_CONFIG := flipflop_defconfig
 
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-KERNEL_TOOLCHAIN := ./../../build-tools-gcc/aarch64-linux-gnu/
+KERNEL_TOOLCHAIN := /srv/src/build-tools-gcc/aarch64-linux-gnu/
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-gnu-
 
 TARGET_COMPILE_WITH_MSM_KERNEL := true
