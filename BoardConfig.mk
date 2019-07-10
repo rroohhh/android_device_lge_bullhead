@@ -30,7 +30,7 @@ TARGET_2ND_CPU_VARIANT := cortex-a53.a57
 
 TARGET_NO_BOOTLOADER := true
 
-WITH_DEXPREOPT := true
+WITH_DEXPREOPT := false
 DONT_DEXPREOPT_PREBUILTS := true
 
 # Inline kernel
