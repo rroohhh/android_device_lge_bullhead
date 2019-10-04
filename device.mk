@@ -399,6 +399,10 @@ DEVICE_PACKAGE_OVERLAYS := \
     $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-lineage
 
+# Health HAL
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.0-service.bullhead
+
 # Enable AAC 5.1 output
 PRODUCT_PROPERTY_OVERRIDES += \
     media.aac_51_output_enabled=true
