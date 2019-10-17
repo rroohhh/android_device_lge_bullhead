@@ -406,7 +406,7 @@ service msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance.
     group root
     writepid /dev/cpuset/system-background/tasks
 
-service charger /charger
+service charger system/bin/charger
     class charger
     critical
     seclabel u:r:charger:s0
