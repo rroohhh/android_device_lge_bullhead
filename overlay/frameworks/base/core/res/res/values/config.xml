@@ -226,12 +226,6 @@
     <!--  Maximum number of supported users -->
     <integer name="config_multiuserMaximumUsers">4</integer>
 
-    <!-- Boolean indicating whether the wifi chipset has 5GHz frequency band support -->
-    <bool translatable="false" name="config_wifi5ghzSupport">true</bool>
-
-    <!-- Boolean indicating whether the wifi chipset has background scan support -->
-    <bool translatable="false" name="config_wifi_background_scan_support">true</bool>
-
     <!-- Wifi driver supports batched scan -->
     <bool translatable="false" name="config_wifi_batched_scan_supported">true</bool>
 
@@ -241,10 +235,6 @@
 
     <!-- Boolean indicating whether or not wifi should turn off when emergency call is made -->
     <bool translatable="false" name="config_wifi_turn_off_during_emergency_call">true</bool>
-
-    <!-- Configure wifi tcp buffersizes in the form:
-         rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
-    <string name="config_wifi_tcp_buffers" translatable="false">524288,6291456,8291456,524288,6291456,8291456</string>
 
     <!-- Idle Receive current for wifi radio. 0 by default-->
     <integer translatable="false" name="config_wifi_idle_receive_cur_ma">1</integer>
@@ -404,8 +394,25 @@
         <item>SUPL_ES=0</item>
     </string-array>
 
+<<<<<<< HEAD
    <!-- Disable rounded corners on windows to improve graphics performance -->
    <bool name="config_supportsRoundedCornersOnWindows">false</bool>
+=======
+    <!-- Idle Receive current for wifi radio. 0 by default-->
+    <integer translatable="false" name="config_wifi_idle_receive_cur_ma">1</integer>
+
+    <!-- Rx current for wifi radio. 0 by default-->
+    <integer translatable="false" name="config_wifi_active_rx_cur_ma">105</integer>
+
+    <!-- Tx current for wifi radio. 0 by default-->
+    <integer translatable="false" name="config_wifi_tx_cur_ma">235</integer>
+
+    <!-- Operating volatage for wifi radio. 0 by default-->
+    <integer translatable="false" name="config_wifi_operating_voltage_mv">3700</integer>
+
+    <!-- Boolean indicating if current platform supports BLE peripheral mode -->
+    <bool name="config_bluetooth_le_peripheral_mode_supported">true</bool>
+>>>>>>> efcc9be9... ether: wifi: Move wifi related overlays to new location
 
    <!-- If this is true, device supports Sustained Performance Mode. -->
    <bool name="config_sustainedPerformanceModeSupported">true</bool>
