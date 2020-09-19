@@ -205,6 +205,7 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8992 \
     audio.a2dp.default \
     audio.usb.default \
+    libaudioclient_shim \
     audio.r_submix.default \
     libaudio-resampler \
     dsm_ctrl
