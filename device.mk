@@ -246,6 +246,9 @@ PRODUCT_PACKAGES += \
     liblocation_api \
     gps.msm8992
 
+# HIDL
+PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
+
 # NFC packages
 PRODUCT_PACKAGES += \
     libnfc-nci \
