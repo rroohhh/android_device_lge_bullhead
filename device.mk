@@ -248,6 +248,12 @@ PRODUCT_PACKAGES += \
 # HIDL
 PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
 
+PRODUCT_PACKAGES += \
+    libhidltransport \
+    libhidltransport.vendor \
+    libhwbinder \
+    libhwbinder.vendor
+
 # NFC packages
 PRODUCT_PACKAGES += \
     libnfc-nci \
