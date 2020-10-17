@@ -149,7 +149,10 @@ BOARD_KERNEL_CMDLINE += loop.max_part=7 androidboot.boot_devices=soc.0/f9824900.
 #BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 
+# Binder
 TARGET_USES_64_BIT_BINDER := true
+# Legacy memfd
+TARGET_HAS_MEMFD_BACKPORT := true
 
 # Power
 TARGET_USES_INTERACTION_BOOST := true
