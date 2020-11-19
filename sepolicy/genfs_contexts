@@ -60,3 +60,8 @@ genfscon debugfs /kgsl		  u:object_r:debugfs_kgsl:s0
 #genfscon debugfs /kgsl/proc      u:object_r:debugfs_kgsl:s0
 genfscon debugfs /ipc_logging     u:object_r:debugfs_ipc:s0
 genfscon debugfs /rmt_storage     u:object_r:debugfs_rmt_storage:s0
+
+# linckandrea additions for init.power script
+genfscon proc  /sys/kernel/power_aware_timer_migration u:object_r:proc_kernel_sched:s0
+genfscon proc  /sys/kernel/sched_window_stats_policy   u:object_r:proc_kernel_sched:s0
+genfscon proc  /sys/kernel/sched_ravg_hist_size        u:object_r:proc_kernel_sched:s0
