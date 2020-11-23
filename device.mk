@@ -213,7 +213,6 @@ PRODUCT_PACKAGES += \
 # Audio effects
 PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
-    libqcomvoiceprocessingdescriptors \
     libqcomvisualizer \
     libqcompostprocbundle \
     libvolumelistener
@@ -233,7 +232,6 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@2.0-impl
 
 PRODUCT_PACKAGES += \
-    android.hardware.graphics.composer@2.1-impl \
     android.hardware.graphics.composer@2.1-service
 
 # GPS configuration
