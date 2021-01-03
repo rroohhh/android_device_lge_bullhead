@@ -147,6 +147,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/lge/bullhead/init.bullhead.power.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.bullhead.power.sh
 
+# Data (CAF)
+PRODUCT_SOONG_NAMESPACES += \
+    vendor/qcom/opensource/dataservices
+
 # MBN
 PRODUCT_COPY_FILES += \
     device/lge/bullhead/init.bullhead.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.bullhead.sh
