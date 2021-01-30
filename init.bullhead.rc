@@ -66,9 +66,6 @@ on property:sys.boot_completed=1
     restart cameraserver
 
 on init
-    # Load persistent dm-verity state
-    verity_load_state
-
     # NXP HAL expects /dev/pn54x
     symlink /dev/pn548 /dev/pn54x
 
@@ -96,9 +93,6 @@ on early-boot
     write /sys/module/pil_msa/parameters/pbl_mba_boot_timeout_ms ${persist.sys.mba_boot_timeout}
     write /sys/module/pil_msa/parameters/modem_auth_timeout_ms ${persist.sys.modem_auth_timeout}
     write /sys/module/peripheral_loader/parameters/proxy_timeout_ms ${persist.sys.pil_proxy_timeout}
-
-    # Update dm-verity state and set partition.*.verified properties
-    verity_update_state
 
     # Busy loop to wait for devices booted by devstart_sh just in case device not ready
     exec - root root system -- /vendor/bin/init.qcom.devwait.sh
