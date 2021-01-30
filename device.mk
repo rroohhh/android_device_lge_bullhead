@@ -209,7 +209,6 @@ PRODUCT_PACKAGES += \
 
 # Light HAL
 PRODUCT_PACKAGES += \
-    lights.vts \
     android.hardware.light@2.0-service.bullhead
 
 # RenderScript HAL

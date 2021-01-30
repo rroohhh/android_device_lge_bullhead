@@ -183,7 +183,7 @@ void Light::setRgbLocked(int red, int green, int blue, int on, int off) {
     mRedLed << red << std::endl;
     mGreenLed << green << std::endl;
     mBlueLed << blue << std::endl;
-    
+
     mRedTimer << on << " " << off << std::endl;
     mGreenTimer << on << " " << off << std::endl;
     mBlueTimer << on << " " << off << std::endl;
