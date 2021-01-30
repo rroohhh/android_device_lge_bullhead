@@ -18,7 +18,7 @@
 # $(call inherit-product, device/sample/products/backup_overlay.mk)
 
 # Get the long list of APNs
-PRODUCT_COPY_FILES := device/lge/bullhead/apns-full-conf.xml:system/etc/apns-conf.xml
+PRODUCT_COPY_FILES := device/lge/bullhead/configs/apns-full-conf.xml:system/etc/apns-conf.xml
 
 # Inherit some common LineageOS stuff.
 TARGET_BOOT_ANIMATION_RES := 1080

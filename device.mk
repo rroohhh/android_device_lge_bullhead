@@ -96,14 +96,14 @@ PRODUCT_COPY_FILES += \
 
 # Input device files
 PRODUCT_COPY_FILES += \
-    device/lge/bullhead/gpio-keys.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/gpio-keys.kl \
-    device/lge/bullhead/qpnp_pon.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/qpnp_pon.kl \
-    device/lge/bullhead/uinput-fpc.idc:$(TARGET_COPY_OUT_SYSTEM)/usr/idc/uinput-fpc.idc \
-    device/lge/bullhead/uinput-fpc.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-fpc.kl
+    device/lge/bullhead/configs/input/gpio-keys.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/gpio-keys.kl \
+    device/lge/bullhead/configs/input/qpnp_pon.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/qpnp_pon.kl \
+    device/lge/bullhead/configs/input/uinput-fpc.idc:$(TARGET_COPY_OUT_SYSTEM)/usr/idc/uinput-fpc.idc \
+    device/lge/bullhead/configs/input/uinput-fpc.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-fpc.kl
 
 # Prebuilt input device calibration files
 PRODUCT_COPY_FILES += \
-    device/lge/bullhead/synaptics_rmi4_i2c.idc:system/usr/idc/synaptics_rmi4_i2c.idc
+    device/lge/bullhead/configs/input/synaptics_rmi4_i2c.idc:system/usr/idc/synaptics_rmi4_i2c.idc
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -147,7 +147,7 @@ PRODUCT_COPY_FILES += \
 
 # For GPS
 PRODUCT_COPY_FILES += \
-    device/lge/bullhead/sec_config:$(TARGET_COPY_OUT_SYSTEM)/etc/sec_config
+    device/lge/bullhead/configs/sec_config:$(TARGET_COPY_OUT_SYSTEM)/etc/sec_config
 
 # NFC config files
 PRODUCT_COPY_FILES += \
@@ -163,7 +163,7 @@ PRODUCT_COPY_FILES += \
 
 # MSM IRQ Balancer configuration file
 PRODUCT_COPY_FILES += \
-    device/lge/bullhead/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
+    device/lge/bullhead/configs/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
 # Power configuration file depending on target (blod fix)
 ifeq ($(TARGET_PRODUCT),lineage_bullhead_blod)
@@ -266,7 +266,7 @@ PRODUCT_PACKAGES += \
 
 # GPS configuration
 PRODUCT_COPY_FILES += \
-    device/lge/bullhead/gps.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/gps.conf
+    device/lge/bullhead/configs/gps.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/gps.conf
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -714,7 +714,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     
 # Privapp Whitelist
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/privapp-permissions-bullhead.xml:system/etc/permissions/privapp-permissions-bullhead.xml
+    $(LOCAL_PATH)/configs/privapp-permissions-bullhead.xml:system/etc/permissions/privapp-permissions-bullhead.xml
 
 $(call inherit-product-if-exists, hardware/qcom/msm8994/msm8992.mk)
 $(call inherit-product-if-exists, vendor/qcom/gpu/msm8994/msm8994-gpu-vendor.mk)
