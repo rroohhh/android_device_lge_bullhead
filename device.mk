@@ -395,8 +395,7 @@ PRODUCT_PACKAGES += \
     bullhead_wlan_mac
 
 DEVICE_PACKAGE_OVERLAYS := \
-    $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay
 
 # Health HAL
 PRODUCT_PACKAGES += \
