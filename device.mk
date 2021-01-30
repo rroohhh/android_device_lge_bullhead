@@ -617,7 +617,8 @@ PRODUCT_PACKAGES += \
 
 # Thermal HAL
 PRODUCT_PACKAGES += \
-    thermal.bullhead 
+    thermal.bullhead \
+    android.hardware.thermal@2.0-service.mock
 
 #GNSS HAL
 PRODUCT_PACKAGES += \
