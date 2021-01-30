@@ -173,15 +173,6 @@ BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/bullhead-setup.sh
 DEVICE_MANIFEST_FILE := device/lge/bullhead/manifest.xml
 DEVICE_MATRIX_FILE := device/lge/bullhead/compatibility_matrix.xml
 
-ifeq ($(TARGET_PRODUCT),aosp_bullhead_svelte)
-BOARD_KERNEL_CMDLINE += mem=1024M maxcpus=2
-MALLOC_SVELTE := true
-endif
-ifeq ($(TARGET_PRODUCT),bullhead_svelte)
-BOARD_KERNEL_CMDLINE += mem=1024M
-MALLOC_SVELTE := true
-endif
-
 # Legacy blob support
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
     /vendor/bin/mm-qcamera-daemon=27
@@ -193,11 +184,6 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 TARGET_USES_OLD_MNC_FORMAT := true
 
 TARGET_FLATTEN_APEX := true
-
-# Limit cpus for blod patch
-ifeq ($(TARGET_PRODUCT),lineage_bullhead_blod)
-BOARD_KERNEL_CMDLINE += boot_cpus=0-3 maxcpus=4
-endif
 
 # Security Patch Level
 VENDOR_SECURITY_PATCH := 2018-12-05
