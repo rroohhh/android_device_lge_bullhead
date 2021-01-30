@@ -163,7 +163,7 @@ BOARD_QTI_CAMERA_32BIT_ONLY := true
 #Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
-TARGET_FS_CONFIG_GEN += device/lge/bullhead/config.fs
+TARGET_FS_CONFIG_GEN += device/lge/bullhead/configs/config.fs
 
 -include vendor/lge/bullhead/BoardConfigVendor.mk
 
