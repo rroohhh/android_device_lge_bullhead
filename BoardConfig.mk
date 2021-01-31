@@ -17,21 +17,117 @@
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_PHONY_TARGETS := true
 
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+TARGET_BOARD_PLATFORM := msm8992
+TARGET_BOOTLOADER_BOARD_NAME := bullhead
+TARGET_BOARD_INFO_FILE := device/lge/bullhead/board-info.txt
+TARGET_NO_RPC := true
+BOARD_EGL_CFG := device/lge/bullhead/egl.cfg
+TARGET_AUX_OS_VARIANT_LIST := bullhead
+
+# Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := cortex-a53
+TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT_RUNTIME := cortex-a53
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := cortex-a53
+TARGET_2ND_CPU_VARIANT := generic
+TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a53
 
-TARGET_NO_BOOTLOADER := true
+# Audio
+BOARD_USES_ALSA_AUDIO := true
+AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_ENABLED_SPKR_PROTECTION := true
 
-# Inline kernel building
+# Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/bullhead/bluetooth
+BOARD_HAS_QCA_BT_ROME := true
+WCNSS_FILTER_USES_SIBS := true
+
+# Camera
+
+# Force camera module to be compiled only in 32-bit mode on 64-bit systems
+# Once camera module can run in the native mode of the system (either
+# 32-bit or 64-bit), the following line should be deleted
+BOARD_QTI_CAMERA_32BIT_ONLY := true
+
+TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
+    /vendor/bin/mm-qcamera-daemon=27
+
+# Charger
+BOARD_CHARGER_ENABLE_SUSPEND := true
+
+# DEXPREOPT
+ifeq ($(HOST_OS),linux)
+  ifneq ($(TARGET_BUILD_VARIANT),eng)
+    ifeq ($(WITH_DEXPREOPT),)
+      DONT_DEXPREOPT_PREBUILTS := true
+      WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := false
+      WITH_DEXPREOPT := true
+    endif
+  endif
+endif
+WITH_DEXPREOPT_DEBUG_INFO := false
+
+# Display
+TARGET_USES_ION := true
+TARGET_USES_C2D_COMPOSITION := true
+TARGET_USES_GRALLOC1_ADAPTER := true
+TARGET_USES_HWC2 := true
+TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x2000U | 0x02000000U
+OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
+
+# Shader cache config options
+# Maximum size of the  GLES Shaders that can be cached for reuse.
+# Increase the size if shaders of size greater than 12KB are used.
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+
+# Maximum GLES shader cache size for each app to store the compiled shader
+# binaries. Decrease the size if RAM or Flash Storage size is a limitation
+# of the device.
+MAX_EGL_CACHE_SIZE := 2048*1024
+
+# Filesystem
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
+BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
+# as of 3765008, inode usage was 3011, use 4096 to be safe
+BOARD_SYSTEMIMAGE_EXTFS_INODE_COUNT := 4096
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 11649679360
+BOARD_CACHEIMAGE_PARTITION_SIZE := 100663296
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_PARTITION_SIZE := 260046848
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_FLASH_BLOCK_SIZE := 131072
+
+# Build a separate vendor.img
+TARGET_COPY_OUT_VENDOR := vendor
+
+TARGET_RECOVERY_FSTAB = device/lge/bullhead/fstab.bullhead
+
+TARGET_FS_CONFIG_GEN += device/lge/bullhead/configs/config.fs
+BOARD_ROOT_EXTRA_FOLDERS := persist firmware
+
+# GPS
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
+BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
+
+# HIDL
+DEVICE_MANIFEST_FILE := device/lge/bullhead/manifest.xml
+DEVICE_MATRIX_FILE := device/lge/bullhead/compatibility_matrix.xml
+
+# Kernel
 KERNEL_TOOLCHAIN := $(PWD)/prebuilts/custom-gcc/arm64-gcc/bin
 KERNEL_TOOLCHAIN_PREFIX := aarch64-elf-
 TARGET_KERNEL_SOURCE := kernel/lge/bullhead
@@ -52,16 +148,19 @@ BOARD_KERNEL_CMDLINE += loop.max_part=7 androidboot.boot_devices=soc.0/f9824900.
 #BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 
-BOARD_USES_ALSA_AUDIO := true
-AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
-AUDIO_FEATURE_ENABLED_SPKR_PROTECTION := true
+TARGET_USES_64_BIT_BINDER := true
 
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_QCOM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/bullhead/bluetooth
-BOARD_HAS_QCA_BT_ROME := true
-WCNSS_FILTER_USES_SIBS := true
+# Power
+TARGET_USES_INTERACTION_BOOST := true
 
+# Radio
+TARGET_USES_OLD_MNC_FORMAT := true
+
+# SELinux
+BOARD_SEPOLICY_DIRS += \
+    device/lge/bullhead/sepolicy
+
+# WiFi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_WLAN_DEVICE := qcwcn
 WPA_SUPPLICANT_VERSION := VER_0_8_X
@@ -73,117 +172,21 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_AP  := "ap"
 WIFI_HIDL_FEATURE_DISABLE_AP_MAC_RANDOMIZATION := true
 
+# MISC
 BOARD_USES_SECURE_SERVICES := true
-
-TARGET_NO_RADIOIMAGE := true
-TARGET_BOARD_PLATFORM := msm8992
-TARGET_BOOTLOADER_BOARD_NAME := bullhead
-TARGET_BOARD_INFO_FILE := device/lge/bullhead/board-info.txt
-TARGET_NO_RPC := true
-
-BOARD_EGL_CFG := device/lge/bullhead/egl.cfg
-
-# Shader cache config options
-# Maximum size of the  GLES Shaders that can be cached for reuse.
-# Increase the size if shaders of size greater than 12KB are used.
-MAX_EGL_CACHE_KEY_SIZE := 12*1024
-
-# Maximum GLES shader cache size for each app to store the compiled shader
-# binaries. Decrease the size if RAM or Flash Storage size is a limitation
-# of the device.
-MAX_EGL_CACHE_SIZE := 2048*1024
-
-TARGET_USES_ION := true
-TARGET_USES_C2D_COMPOSITION := true
-TARGET_USES_GRALLOC1_ADAPTER := true
-TARGET_USES_HWC2 := true
-TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x2000U | 0x02000000U
-BOARD_ROOT_EXTRA_FOLDERS := persist firmware
-
-TARGET_AUX_OS_VARIANT_LIST := bullhead
-
-OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
-
-# Enable dex-preoptimization to speed up first boot sequence
-ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
-    ifeq ($(WITH_DEXPREOPT),)
-      DONT_DEXPREOPT_PREBUILTS := true
-      WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := false
-      WITH_DEXPREOPT := true
-    endif
-  endif
-endif
-WITH_DEXPREOPT_DEBUG_INFO := false
-
-TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
-BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
-# as of 3765008, inode usage was 3011, use 4096 to be safe
-BOARD_SYSTEMIMAGE_EXTFS_INODE_COUNT := 4096
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 11649679360
-BOARD_CACHEIMAGE_PARTITION_SIZE := 100663296
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_VENDORIMAGE_PARTITION_SIZE := 260046848
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_FLASH_BLOCK_SIZE := 131072
-
-# Build a separate vendor.img
-TARGET_COPY_OUT_VENDOR := vendor
-
-TARGET_RECOVERY_FSTAB = device/lge/bullhead/fstab.bullhead
-
 TARGET_RELEASETOOLS_EXTENSIONS := device/lge/bullhead
-
-BOARD_CHARGER_ENABLE_SUSPEND := true
-
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
-BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
-
-BOARD_SEPOLICY_DIRS += \
-    device/lge/bullhead/sepolicy
-
-TARGET_USES_64_BIT_BINDER := true
-
 TARGET_USES_AOSP := true
-TARGET_USES_INTERACTION_BOOST := true
-
 TARGET_RECOVERY_UI_LIB := librecovery_ui_nanohub
-
 # Netd
 TARGET_OMIT_NETD_TETHER_FTP_HELPER := true
-
-# Force camera module to be compiled only in 32-bit mode on 64-bit systems
-# Once camera module can run in the native mode of the system (either
-# 32-bit or 64-bit), the following line should be deleted
-BOARD_QTI_CAMERA_32BIT_ONLY := true
-
 #Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
-
-TARGET_FS_CONFIG_GEN += device/lge/bullhead/configs/config.fs
-
--include vendor/lge/bullhead/BoardConfigVendor.mk
-
 # Testing related defines
 BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/bullhead-setup.sh
-
-DEVICE_MANIFEST_FILE := device/lge/bullhead/manifest.xml
-DEVICE_MATRIX_FILE := device/lge/bullhead/compatibility_matrix.xml
-
-# Legacy blob support
-TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
-    /vendor/bin/mm-qcamera-daemon=27
-
 # Enable workaround for slow rom flash
 BOARD_SUPPRESS_SECURE_ERASE := true
-
-# Radio
-TARGET_USES_OLD_MNC_FORMAT := true
-
 TARGET_FLATTEN_APEX := true
-
 # Security Patch Level
 VENDOR_SECURITY_PATCH := 2018-12-05
+
+-include vendor/lge/bullhead/BoardConfigVendor.mk

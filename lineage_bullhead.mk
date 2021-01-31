@@ -20,8 +20,10 @@
 # Get the long list of APNs
 PRODUCT_COPY_FILES := device/lge/bullhead/configs/apns-full-conf.xml:system/etc/apns-conf.xml
 
-# Inherit some common LineageOS stuff.
-TARGET_BOOT_ANIMATION_RES := 1080
+# Inherit LineageOS stuff.
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1080
+TARGET_BOOTANIMATION_HALF_RES := true
 TARGET_GAPPS_ARCH := arm64
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
