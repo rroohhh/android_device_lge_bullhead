@@ -23,10 +23,6 @@
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
-# Dexpreopt
-WITH_DEXPREOPT := true
-WITH_DEXPREOPT_PIC := true
-
 # Enable support for chinook sensorhub
 TARGET_USES_CHINOOK_SENSORHUB := false
 
@@ -133,7 +129,7 @@ PRODUCT_COPY_FILES += \
 
 # For GPS
 PRODUCT_COPY_FILES += \
-    device/lge/bullhead/configs/sec_config:$(TARGET_COPY_OUT_SYSTEM)/etc/sec_config
+    device/lge/bullhead/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
 
 # NFC config files
 PRODUCT_COPY_FILES += \
