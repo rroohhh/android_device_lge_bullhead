@@ -65,3 +65,5 @@ genfscon debugfs /rmt_storage     u:object_r:debugfs_rmt_storage:s0
 genfscon proc  /sys/kernel/power_aware_timer_migration u:object_r:proc_kernel_sched:s0
 genfscon proc  /sys/kernel/sched_window_stats_policy   u:object_r:proc_kernel_sched:s0
 genfscon proc  /sys/kernel/sched_ravg_hist_size        u:object_r:proc_kernel_sched:s0
+genfscon sysfs /devices/soc.0/qcom,cpubw.27/devfreq    u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/soc.0/qcom,mincpubw.28/devfreq u:object_r:sysfs_devfreq:s0

@@ -85,7 +85,7 @@ write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 1
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "70 960000:80 1248000:85"
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
 write /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 80000
-write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 384000
+write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 633600
 
 # restore A57's max
 copy /sys/devices/system/cpu/cpu4/cpufreq/cpuinfo_max_freq /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
@@ -101,9 +101,16 @@ write /sys/module/cpu_boost/parameters/input_boost_freq "0:960000"
 write /sys/module/cpu_boost/parameters/input_boost_ms 40
 
 # Setting B.L scheduler parameters
+# Sched parameters kanged from ether (nextbit robin)
+write /proc/sys/kernel/power_aware_timer_migration 1
 write /proc/sys/kernel/sched_migration_fixup 1
+write /proc/sys/kernel/sched_small_task 30
 write /proc/sys/kernel/sched_upmigrate 95
 write /proc/sys/kernel/sched_downmigrate 85
+write /proc/sys/kernel/sched_window_stats_policy 2
+write /proc/sys/kernel/sched_ravg_hist_size 5
+get-set-forall /sys/devices/system/cpu/*/sched_mostly_idle_load 20
+get-set-forall /sys/devices/system/cpu/*/sched_mostly_idle_nr_run 3
 write /proc/sys/kernel/sched_freq_inc_notify 400000
 write /proc/sys/kernel/sched_freq_dec_notify 400000
 
@@ -127,3 +134,28 @@ get-set-forall /sys/devices/soc.0/qcom,bcl.*/mode enable
 
 # set GPU default power level to 5 (180MHz) instead of 4 (305MHz)
 write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 5
+
+# devfreq
+get-set-forall /sys/class/devfreq/qcom,cpubw*/governor bw_hwmon
+restorecon -R /sys/class/devfreq/qcom,cpubw*
+get-set-forall /sys/class/devfreq/qcom,cpubw*/bw_hwmon/sample_ms 4
+get-set-forall /sys/class/devfreq/qcom,cpubw*/bw_hwmon/io_percent 34
+get-set-forall /sys/class/devfreq/qcom,cpubw*/bw_hwmon/hist_memory 20
+get-set-forall /sys/class/devfreq/qcom,cpubw*/bw_hwmon/hyst_length 10
+get-set-forall /sys/class/devfreq/qcom,cpubw*/bw_hwmon/low_power_ceil_mbps 0
+get-set-forall /sys/class/devfreq/qcom,cpubw*/bw_hwmon/low_power_io_percent 34
+get-set-forall /sys/class/devfreq/qcom,cpubw*/bw_hwmon/low_power_delay 20
+get-set-forall /sys/class/devfreq/qcom,cpubw*/bw_hwmon/guard_band_mbps 0
+get-set-forall /sys/class/devfreq/qcom,cpubw*/bw_hwmon/up_scale 250
+get-set-forall /sys/class/devfreq/qcom,cpubw*/bw_hwmon/idle_mbps 1600
+get-set-forall /sys/class/devfreq/qcom,mincpubw*/governor cpufreq
+
+# VM
+write /proc/sys/vm/dirty_background_ratio 10
+write /proc/sys/vm/dirty_ratio 30
+write /proc/sys/vm/dirty_expire_centisecs 3000
+write /proc/sys/vm/dirty_writeback_centisecs 3000
+write /proc/sys/vm/page-cluster 0
+write /proc/sys/vm/stat_interval 10
+write /proc/sys/vm/swappiness 100
+write /proc/sys/vm/vfs_cache_pressure 60
