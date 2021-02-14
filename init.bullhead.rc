@@ -205,7 +205,7 @@ on post-fs
     write /sys/block/dm-1/queue/read_ahead_kb 2048
     write /sys/block/dm-2/queue/read_ahead_kb 2048
 
-    start qseecomd
+    start vendor.qseecomd
     # Busy loop to wait for qseecomd started
     exec - root root system -- /vendor/bin/init.bullhead.qseecomd.sh
     # Start devices by sysfs trigger
@@ -393,7 +393,7 @@ service cnss-daemon /vendor/bin/cnss-daemon -n -l
     class late_start
     writepid /dev/cpuset/system-background/tasks
 
-service qseecomd /vendor/bin/qseecomd
+service vendor.qseecomd /vendor/bin/qseecomd
     class core
     user root
     group root
