@@ -127,8 +127,8 @@ DEVICE_MANIFEST_FILE := device/lge/bullhead/manifest.xml
 DEVICE_MATRIX_FILE := device/lge/bullhead/compatibility_matrix.xml
 
 # Kernel
-KERNEL_TOOLCHAIN := $(PWD)/prebuilts/custom-gcc/arm64-gcc/bin
-KERNEL_TOOLCHAIN_PREFIX := aarch64-elf-
+# KERNEL_TOOLCHAIN := $(PWD)/prebuilts/custom-gcc/arm64-gcc/bin
+# KERNEL_TOOLCHAIN_PREFIX := aarch64-elf-
 TARGET_KERNEL_SOURCE := kernel/lge/bullhead
 TARGET_KERNEL_CONFIG := shadow_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
