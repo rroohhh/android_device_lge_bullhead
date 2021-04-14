@@ -1,8 +1,8 @@
 [
   {
-    "repository"  : "Toomoch/kernel_lge_bullhead",
+    "repository"  : "mortezadadgar/kernel_lge_bullhead",
     "target_path" : "kernel/lge/bullhead",
-    "branch"      : "lineage-17.1",
+    "branch"      : "master",
     "remote"      : "github"
   },
   {
@@ -14,7 +14,7 @@
   {
     "repository"  : "LineageOS/android_hardware_sony_timekeep",
     "target_path" : "hardware/sony/timekeep",
-    "branch"      : "lineage-17.1",
+    "branch"      : "lineage-18.1",
     "remote"      : "github"
   }
 ]
