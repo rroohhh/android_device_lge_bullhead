@@ -163,6 +163,8 @@ TARGET_USES_OLD_MNC_FORMAT := true
 # include device/qcom/sepolicy-legacy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
     device/lge/bullhead/sepolicy
+# ???
+SELINUX_IGNORE_NEVERALLOWS := true
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
