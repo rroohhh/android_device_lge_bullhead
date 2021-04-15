@@ -160,6 +160,7 @@ TARGET_USES_INTERACTION_BOOST := true
 TARGET_USES_OLD_MNC_FORMAT := true
 
 # SELinux
+include device/qcom/sepolicy-legacy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
     device/lge/bullhead/sepolicy
 
