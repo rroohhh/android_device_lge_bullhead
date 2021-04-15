@@ -90,6 +90,9 @@
 /dev/nanohub_comms                     u:object_r:sensors_device:s0
 /dev/fpc1020                           u:object_r:fingerprint_device:s0
 
+# WLAN
+/dev/wlan                                       u:object_r:wlan_device:s0
+
 # MSM camera related
 /dev/media[0-9]+                       u:object_r:camera_device:s0
 /dev/jpeg[0-9]+                        u:object_r:camera_device:s0
