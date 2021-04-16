@@ -130,7 +130,7 @@ DEVICE_MATRIX_FILE := device/lge/bullhead/compatibility_matrix.xml
 # KERNEL_TOOLCHAIN := $(PWD)/prebuilts/custom-gcc/arm64-gcc/bin
 # KERNEL_TOOLCHAIN_PREFIX := aarch64-elf-
 TARGET_KERNEL_SOURCE := kernel/lge/bullhead
-TARGET_KERNEL_CONFIG := shadow_defconfig
+TARGET_KERNEL_CONFIG := aoscp_bullhead_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_COMPILE_WITH_MSM_KERNEL := true
 TARGET_KERNEL_ARCH := arm64
@@ -145,7 +145,7 @@ BOARD_RAMDISK_USE_XZ := true
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bullhead boot_cpus=0-5
 BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 msm_poweroff.download_mode=0
 BOARD_KERNEL_CMDLINE += loop.max_part=7 androidboot.boot_devices=soc.0/f9824900.sdhci
-#BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 
 # Binder
