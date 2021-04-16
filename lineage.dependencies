@@ -1,6 +1,6 @@
 [
   {
-    "repository"  : "flipflop133/flipflop",
+    "repository"  : "rroohhh/android_kernel_lge_bullhead",
     "target_path" : "kernel/lge/bullhead",
     "branch"      : "upstream_2",
     "remote"      : "github"
